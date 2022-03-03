@@ -43,7 +43,18 @@ public class MarkdownParse {
             if(lastDot == -1 || !p.toString().substring(lastDot).equals(".md")) {
                 return result;
             }
-            ArrayList<String> links = getLinks(Files.readString(p));
+
+            String file = Files.readString(p);
+
+            if (file.contains("[") && 
+                file.contains("]") && 
+                file.contains("(") && 
+                file.contains(")")) {
+                
+                System.out.println(p);
+            }
+
+            ArrayList<String> links = getLinks(file);
             result.put(dirOrFile.getPath(), links);
             return result;
         }
